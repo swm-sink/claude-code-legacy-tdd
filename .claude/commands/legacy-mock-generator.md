@@ -128,7 +128,7 @@ Test doubles are essential for isolating legacy code during testing. This comman
 - Complete documentation and maintenance procedures for long-term mock management
 
 ## Integration
-- Updates `AGENTS-COMMS/coordination.json` with mock generation completion status
+- Documents mock generation completion status and test infrastructure readiness
 - Provides test isolation infrastructure for all subsequent transformation commands
 - Enables comprehensive testing without external dependencies or complex setup requirements
 - Establishes foundation for safe refactoring with reliable test double infrastructure

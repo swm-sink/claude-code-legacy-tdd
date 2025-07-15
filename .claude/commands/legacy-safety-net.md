@@ -158,7 +158,7 @@ This command establishes the complete safety net required before ANY legacy code
 - Complete documentation and procedures for maintaining safety infrastructure
 
 ## Integration
-- Updates `AGENTS-COMMS/coordination.json` with safety net completion status
+- Documents safety net completion status and infrastructure readiness
 - Enables transformation commands only after all safety requirements are met
 - Provides comprehensive safety infrastructure for all subsequent legacy code modifications
 - Establishes foundation for fearless refactoring with immediate rollback capability

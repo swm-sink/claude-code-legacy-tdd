@@ -134,7 +134,7 @@ Rollback preparation is the final safety net before transformation. This command
 - Emergency rollback procedures documented with clear decision criteria and execution steps
 
 ## Integration
-- Updates `AGENTS-COMMS/coordination.json` with rollback preparation completion status
+- Documents rollback preparation completion status and safety procedures
 - Provides safety net procedures for all subsequent transformation commands
 - Establishes foundation for risk-free transformation with immediate recovery capability
 - Enables confident transformation execution with comprehensive fallback procedures

@@ -2,164 +2,135 @@
 
 **Command**: `/legacy-assess`  
 **Phase**: Initial Assessment  
-**Coverage Requirement**: Current state analysis + 90% minimum target establishment
+**Coverage Requirement**: Current state analysis + 90% minimum target establishment  
+**Risk Level**: Low (read-only analysis)
 
 ## Objective
 
-Perform complete legacy codebase analysis combining risk assessment, test coverage analysis, dependency mapping, antipattern detection, and security baseline in a single comprehensive command.
+Perform complete legacy codebase analysis combining risk assessment, test coverage analysis, dependency mapping, antipattern detection, and security baseline in a single comprehensive command that establishes the foundation for all subsequent transformation work.
 
 ## Context
 
-This is the MANDATORY first command that must be run before any legacy code work. It establishes the complete picture of the codebase state and sets the 90%+ coverage requirements for all future work.
+This is the MANDATORY first command that must be run before any legacy code work. It establishes the complete picture of the codebase state and sets the 90%+ coverage requirements for all future work. This command integrates all assessment activities into a unified analysis.
 
-## Implementation
+## Comprehensive Assessment Tasks
 
-### Step 1: Risk Assessment Analysis
-```bash
-# Comprehensive complexity analysis
-find . -name "*.swift" -exec wc -l {} \; | awk '{sum+=$1} END {print "Total Lines: " sum}'
-find . -name "*.swift" -exec grep -c "class\|struct\|enum\|protocol" {} \; | awk '{sum+=$1} END {print "Total Types: " sum}'
+1. **Project Type Detection and Baseline Setup**:
+   - Detect project type (iOS/Swift, JavaScript/Node.js, Java, Python, other) based on file extensions and project structure
+   - Identify build system (Xcode, npm/yarn, Maven/Gradle, pip/conda) and testing frameworks in use
+   - Establish technology-specific analysis patterns appropriate for the detected environment
+   - Configure baseline metrics collection appropriate for the project type
 
-# Critical risk patterns
-echo "=== CRITICAL RISK ANALYSIS ==="
-find . -name "*.swift" -exec grep -l "!" {} \; | wc -l | awk '{print "Force Unwrap Files: " $1}'
-find . -name "*.swift" -exec grep -l "fatalError\|assert\|precondition" {} \; | wc -l | awk '{print "Crash Risk Files: " $1}'
-find . -name "*.swift" -exec grep -l "try!" {} \; | wc -l | awk '{print "Force Try Files: " $1}'
+2. **Codebase Structure and Complexity Analysis**:
+   - Analyze overall codebase size, file count, and directory structure organization
+   - Identify largest files (>500 lines) and calculate approximate complexity metrics
+   - Find potential god objects by counting methods per class/module (>20 methods flagged)
+   - Assess architectural patterns and identify potential structural issues
 
-# God object detection (classes with >20 methods)
-echo "=== GOD OBJECT DETECTION ==="
-find . -name "*.swift" -exec awk '/^class|^struct/ {class=$2} /func / {count++} /^}/ {if(count>20) print FILENAME":"class" has "count" methods"; count=0}' {} \;
-```
+3. **Risk Assessment and Critical Component Identification**:
+   - Identify business-critical components (authentication, payment, data processing, user-facing features)
+   - Locate high-risk patterns (force unwrapping, unhandled exceptions, unsafe operations, hardcoded values)
+   - Find complex logic that requires careful handling (algorithms, state machines, validation logic)
+   - Assess transformation difficulty based on coupling, complexity, and business criticality
 
-### Step 2: Current Test Coverage Analysis
-```bash
-# Swift/iOS coverage analysis
-if [ -f "*.xcworkspace" ] || [ -f "*.xcodeproj" ]; then
-    echo "=== iOS PROJECT COVERAGE ANALYSIS ==="
-    xcodebuild test -workspace *.xcworkspace -scheme * -destination 'platform=iOS Simulator,name=iPhone 15' -enableCodeCoverage YES 2>/dev/null || echo "Manual coverage analysis required"
-fi
+4. **Current Test Coverage Assessment**:
+   - Analyze existing test suite structure and organization (unit tests, integration tests, end-to-end tests)
+   - Evaluate current test coverage using project-appropriate tools and methods
+   - Identify components with zero or minimal test coverage, especially business-critical ones
+   - Calculate coverage gaps needed to reach 90% minimum requirement
 
-# Generic test file analysis
-echo "=== CURRENT TEST COVERAGE ==="
-TEST_FILES=$(find . -name "*Test*" -o -name "*test*" -o -name "*spec*" | wc -l)
-SOURCE_FILES=$(find . -name "*.swift" -o -name "*.java" -o -name "*.js" -o -name "*.py" | grep -v -i test | wc -l)
-echo "Test Files: $TEST_FILES"
-echo "Source Files: $SOURCE_FILES"
-COVERAGE_RATIO=$(echo "scale=2; $TEST_FILES / $SOURCE_FILES * 100" | bc -l 2>/dev/null || echo "0.0")
-echo "Estimated Coverage: ${COVERAGE_RATIO}%"
+5. **Dependency and Coupling Analysis**:
+   - Map external dependencies (third-party libraries, frameworks, system services)
+   - Identify internal coupling patterns (singleton usage, static dependencies, global state)
+   - Find circular dependencies and architectural violations that complicate refactoring
+   - Assess dependency injection opportunities and seam identification potential
 
-if (( $(echo "$COVERAGE_RATIO < 90" | bc -l 2>/dev/null || echo "1") )); then
-    echo "❌ COVERAGE INSUFFICIENT: Current $COVERAGE_RATIO% < Required 90%"
-    echo "⚠️  TRANSFORMATION BLOCKED until 90%+ coverage achieved"
-else
-    echo "✅ COVERAGE SUFFICIENT: $COVERAGE_RATIO% >= Required 90%"
-fi
-```
+6. **Code Quality and Antipattern Detection**:
+   - Detect traditional antipatterns (god objects, long methods, high parameter counts)
+   - Identify LLM-specific antipatterns (massive files >1000 lines, deep nesting, ambiguous naming)
+   - Find SOLID principle violations and architectural boundary violations
+   - Assess code maintainability and readability for AI-assisted development
 
-### Step 3: Dependency and Architecture Analysis
-```bash
-echo "=== DEPENDENCY ANALYSIS ==="
+7. **Security Baseline Establishment**:
+   - Scan for obvious security vulnerabilities (hardcoded secrets, insecure communications, injection risks)
+   - Identify authentication and authorization patterns that need careful handling
+   - Find data protection and encryption implementations that require validation
+   - Establish security baseline for tracking improvements during transformation
 
-# Import/dependency analysis
-echo "External Dependencies:"
-find . -name "*.swift" -exec grep -h "^import " {} \; | sort | uniq -c | sort -nr | head -10
+8. **Transformation Readiness Assessment**:
+   - Calculate overall readiness score based on coverage, complexity, and risk factors
+   - Identify immediate blockers that must be addressed before transformation can begin
+   - Prioritize components for initial characterization testing and safety net creation
+   - Establish recommended transformation sequence based on risk and business impact
 
-# Circular dependency detection
-echo "Potential Circular Dependencies:"
-find . -name "*.swift" -exec grep -l "class\|struct" {} \; | head -20 | while read file; do
-    classes=$(grep "class\|struct" "$file" | awk '{print $2}' | cut -d: -f1)
-    echo "$file: $classes"
-done
+## Assessment Integration and Reporting
 
-# Coupling analysis
-echo "High Coupling Indicators:"
-find . -name "*.swift" -exec grep -c "\.shared\|\.singleton\|\.instance" {} \; | grep -v ":0" | head -10
-```
+### Comprehensive Risk and Readiness Scoring
 
-### Step 4: Antipattern and Code Quality Analysis
-```bash
-echo "=== ANTIPATTERN DETECTION ==="
+Create an overall assessment that combines multiple factors:
 
-# God object detection (detailed)
-echo "God Objects (>20 methods):"
-find . -name "*.swift" -exec awk 'BEGIN{methods=0; class=""} /^class |^struct / {if(methods>20 && class!="") print FILENAME":"class" ("methods" methods)"; class=$2; methods=0} /func / {methods++} END{if(methods>20) print FILENAME":"class" ("methods" methods)"}' {} \;
+**Coverage Readiness (0-100 points)**:
+- Current test coverage percentage and quality assessment
+- Gap analysis for reaching 90% minimum requirement
+- Test infrastructure maturity and framework suitability
 
-# Long method detection (>50 lines)
-echo "Long Methods (>50 lines):"
-find . -name "*.swift" -exec awk '/func / {start=NR; name=$2} /^    }/ {if(NR-start>50) print FILENAME":"name" ("NR-start" lines)"}' {} \;
+**Complexity Assessment (0-100 points)**:
+- Codebase size and structural complexity evaluation
+- God object and antipattern density scoring
+- Architectural quality and coupling assessment
 
-# High parameter count (>5 parameters)
-echo "High Parameter Count (>5):"
-find . -name "*.swift" -exec grep -n "func.*(" {} \; | grep -E "\([^)]*,[^)]*,[^)]*,[^)]*,[^)]*," | head -10
+**Security Posture (0-100 points)**:
+- Security vulnerability assessment and baseline establishment
+- Authentication/authorization implementation quality
+- Data protection and encryption usage evaluation
 
-# SOLID principle violations
-echo "Single Responsibility Violations:"
-find . -name "*.swift" -exec grep -l "Manager\|Handler\|Controller\|Service\|Helper\|Utility" {} \; | head -10
-```
+**Transformation Readiness (0-100 points)**:
+- Overall readiness for safe legacy transformation
+- Immediate blocker identification and resolution requirements
+- Recommended transformation approach and sequencing
 
-### Step 5: Security Baseline Analysis
-```bash
-echo "=== SECURITY BASELINE ==="
+### Assessment Report Requirements
 
-# Hardcoded secrets detection
-echo "Potential Hardcoded Secrets:"
-find . -name "*.swift" -exec grep -i "password\|secret\|key\|token\|api_key" {} \; | grep -v "//\|func\|var.*:" | head -5
+Create a comprehensive assessment report that includes:
 
-# Unsafe network calls
-echo "Unsafe Network Patterns:"
-find . -name "*.swift" -exec grep -l "http://\|allowsArbitraryLoads\|NSAppTransportSecurity" {} \; | head -5
+**Executive Summary**:
+- Overall transformation readiness score and recommendation (GO/NO-GO decision)
+- Critical issues that must be addressed before transformation can begin
+- Estimated effort required to achieve transformation readiness
 
-# Input validation gaps
-echo "Input Validation Gaps:"
-find . -name "*.swift" -exec grep -l "URLSession\|Alamofire" {} \; | xargs grep -L "guard\|validation\|sanitiz" | head -5
+**Detailed Analysis Results**:
+- Complete breakdown of coverage gaps with specific file and component identification
+- Risk assessment with prioritized list of high-risk components requiring careful handling
+- Antipattern inventory with specific examples and remediation recommendations
+- Security baseline with vulnerability assessment and improvement recommendations
 
-# Authentication weaknesses
-echo "Authentication Patterns:"
-find . -name "*.swift" -exec grep -n "auth\|login\|token\|session" {} \; | head -10
-```
+**Transformation Roadmap**:
+- Recommended sequence for achieving 90% coverage requirement
+- Priority order for characterization testing based on business criticality and risk
+- Suggested approach for dependency injection and seam identification
+- Timeline estimates for reaching transformation readiness
 
-### Step 6: Comprehensive Assessment Summary
-```bash
-echo "=== LEGACY CODE ASSESSMENT SUMMARY ==="
-echo "Generated: $(date)"
-echo ""
-echo "📊 QUANTITATIVE ANALYSIS:"
-echo "- Total Source Files: $SOURCE_FILES"
-echo "- Current Test Coverage: ${COVERAGE_RATIO}%"
-echo "- Coverage Gap: $(echo "90 - $COVERAGE_RATIO" | bc -l)% (must reach 90%+)"
-echo ""
-echo "🚨 CRITICAL ISSUES:"
-echo "- Force unwrapping files require immediate attention"
-echo "- God objects need decomposition before transformation"
-echo "- Security gaps require hardening"
-echo ""
-echo "📋 TRANSFORMATION READINESS:"
-if (( $(echo "$COVERAGE_RATIO < 90" | bc -l 2>/dev/null || echo "1") )); then
-    echo "❌ NOT READY: Coverage insufficient ($COVERAGE_RATIO% < 90%)"
-    echo "📝 NEXT STEPS:"
-    echo "1. Run /legacy-safety-net to achieve 90%+ coverage"
-    echo "2. Address critical security issues"
-    echo "3. Re-run /legacy-assess to verify readiness"
-else
-    echo "✅ READY: Coverage sufficient for safe transformation"
-    echo "📝 NEXT STEPS:"
-    echo "1. Use /legacy-sprout for new functionality"
-    echo "2. Use /legacy-extract for refactoring"
-    echo "3. Run /legacy-validate continuously"
-fi
-```
+**Technology-Specific Recommendations**:
+- Framework-appropriate testing strategies and tool recommendations
+- Platform-specific best practices for coverage improvement and safety net creation
+- Recommended patterns for mock generation and dependency injection
+- Security considerations specific to the detected technology stack
 
 ## Success Criteria
-- Complete codebase analysis performed
-- 90% coverage target established
-- Critical risks identified and prioritized
-- Security baseline documented
-- Clear go/no-go decision provided
+
+- Complete codebase analysis performed with technology-appropriate methods
+- 90% coverage target established with clear gap analysis and remediation plan
+- Critical risks identified and prioritized with specific component-level recommendations
+- Security baseline documented with comprehensive vulnerability assessment
+- Clear go/no-go decision provided with actionable next steps for transformation readiness
 
 ## Integration
-- Updates `agent-comms/coordination.json` with assessment results
-- Establishes coverage baseline for all future commands
-- Blocks unsafe operations until coverage requirements met
+
+- Establishes assessment results and readiness status for subsequent analysis
+- Establishes coverage baseline and gap analysis for all subsequent safety infrastructure commands
+- Provides risk-based prioritization for characterization testing and mock generation
+- Blocks unsafe operations until coverage requirements are met and critical issues are resolved
 
 ## Rollback
-Assessment is read-only and requires no rollback procedures.
+
+Assessment is read-only analysis and requires no rollback procedures. If assessment reveals critical issues, address them through the appropriate safety infrastructure commands before proceeding with transformation.

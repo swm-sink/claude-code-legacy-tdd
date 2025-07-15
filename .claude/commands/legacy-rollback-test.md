@@ -141,7 +141,7 @@ This command validates that rollback procedures established by `/legacy-rollback
 - Complete confidence established in safety net and emergency recovery capabilities
 
 ## Integration
-- Updates `AGENTS-COMMS/coordination.json` with rollback testing completion status
+- Documents rollback testing completion status and validation results
 - Validates safety infrastructure is ready for transformation activities
 - Provides verified emergency recovery capability for all subsequent legacy code modifications
 - Establishes operational confidence in transformation safety procedures

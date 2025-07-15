@@ -10,7 +10,7 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
 
 <claude_4_behavior interpretation="STRICT_ENFORCEMENT">
   <legacy_code_mode enforcement="MANDATORY">
-    <safety_first>NEVER modify legacy code without 70%+ characterization test coverage</safety_first>
+    <safety_first>NEVER modify legacy code without 90%+ characterization test coverage</safety_first>
     <characterization_principle>Document actual behavior, not intended behavior</characterization_principle>
     <rollback_ready>Every change must have immediate rollback capability</rollback_ready>
     <security_baseline>Establish security state before any modifications</security_baseline>
@@ -167,23 +167,21 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
   </safety_validation>
 </quality_gates>
 
-## 🤖 Agent Coordination Patterns
+## 🤖 Claude Code Integration Patterns
 
-<agent_coordination>
-  <coordination_file>/Users/smenssink/Documents/Github/legacy-code-tdd/AGENTS-COMMS/coordination.json</coordination_file>
+<claude_code_integration>
+  <command_execution>
+    <status_tracking>Document command completion status and results for user visibility</status_tracking>
+    <phase_validation>Validate phase requirements before proceeding to next stage</phase_validation>
+    <blocker_handling>Identify and communicate blockers with recommended solutions</blocker_handling>
+  </command_execution>
   
-  <status_updates>
-    <after_command_execution>Update coordination.json with results and next steps</after_command_execution>
-    <before_phase_transition>Validate all phase requirements met</before_phase_transition>
-    <on_blocker_detection>Log blockers and recommended resolution</on_blocker_detection>
-  </status_updates>
-  
-  <parallel_agent_patterns>
-    <research_continuous>Research agent provides ongoing intelligence</research_continuous>
-    <development_coordination>Development agents coordinate through central hub</development_coordination>
-    <validation_concurrent>QA and testing agents work in parallel with development</validation_concurrent>
-  </parallel_agent_patterns>
-</agent_coordination>
+  <workflow_patterns>
+    <sequential_execution>Execute commands in proper dependency order for safety</sequential_execution>
+    <prerequisite_validation>Verify all prerequisites before command execution</prerequisite_validation>
+    <safety_enforcement>Enforce 90% coverage and safety requirements throughout</safety_enforcement>
+  </workflow_patterns>
+</claude_code_integration>
 
 ## 🧪 Testing Infrastructure Patterns
 
