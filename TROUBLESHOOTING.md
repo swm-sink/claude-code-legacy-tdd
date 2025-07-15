@@ -127,7 +127,7 @@ timeout 300 /legacy-assess-risk --quick-scan --max-files=100
 #### Problem: Coverage stuck at 70-80% despite adding tests
 ```
 Current Coverage: 78%
-Required: 90%
+Required: 90% (Google exemplary standard - industry requirement)
 Blocking: All transformation commands
 ```
 
@@ -700,6 +700,7 @@ ENVIRONMENT=production /legacy-rollback-if-needed
 ```bash
 # Increase test coverage requirements
 /legacy-safety-net --minimum-coverage=95 --include-integration
+# Note: 95% exceeds Google's 90% exemplary standard for extra safety
 
 # Add deployment validation
 /legacy-validate --production-readiness --block-on-failure

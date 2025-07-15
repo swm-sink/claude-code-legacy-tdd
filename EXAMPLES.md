@@ -14,9 +14,11 @@ This guide provides detailed, step-by-step examples of transforming real legacy 
 
 ---
 
-## 📱 Example 1: iOS God Object Decomposition
+## 📱 Example 1: God Object Decomposition (iOS/Swift)
 
 **Scenario**: A 1,200-line `UserManager` class handling authentication, profile management, settings, analytics, and notifications.
+
+*Note: This pattern applies to god objects in any language - adapt the code syntax as needed for Java, JavaScript, Python, C#, etc.*
 
 ### Initial State Assessment
 
@@ -30,12 +32,13 @@ This guide provides detailed, step-by-step examples of transforming real legacy 
 CRITICAL RISK ANALYSIS:
 - UserManager.swift: 1,247 lines, 73 methods (GOD OBJECT)
 - Cyclomatic complexity: 156 (EXTREMELY HIGH)
-- Test coverage: 12% (INSUFFICIENT)
+- Test coverage: 12% (INSUFFICIENT - requires 90% Google exemplary standard)
 - Force unwraps: 23 instances (HIGH CRASH RISK)
 - Dependencies: 15 singletons (HIGH COUPLING)
 
 TRANSFORMATION READINESS: 23/100 (NOT READY)
 RECOMMENDATION: REQUIRES EXTENSIVE SAFETY NET BEFORE TRANSFORMATION
+COVERAGE TARGET: 90% (Google exemplary standard) before any changes
 ```
 
 ### Building Safety Infrastructure
@@ -421,9 +424,11 @@ enum FeatureFlag: String {
 
 ---
 
-## 🌐 Example 2: Web API Legacy Payment System
+## 🌐 Example 2: Legacy Payment System (Web API/JavaScript)
 
 **Scenario**: A Node.js payment processing system with no tests, complex business logic, and security vulnerabilities.
+
+*Note: This security hardening pattern applies to payment systems in any language - adapt for your specific payment processing stack.*
 
 ### Initial Assessment
 
@@ -856,9 +861,11 @@ MIGRATION STATUS:
 
 ---
 
-## 📊 Example 3: React Component God Object
+## 📊 Example 3: UI Component God Object (React/JavaScript)
 
 **Scenario**: A 2,100-line React component handling user dashboard, data fetching, state management, analytics, and UI rendering.
+
+*Note: This component decomposition pattern applies to any UI framework - Angular, Vue, SwiftUI, Android Views, etc.*
 
 ### Assessment and Planning
 
@@ -1491,11 +1498,13 @@ Based on the examples above, here's your action plan:
 
 ### Choose Your Example Path
 
-**If you have a large, complex class/component**: Follow the [iOS God Object](#📱-example-1-ios-god-object-decomposition) pattern
+**If you have a large, complex class/component**: Follow the [God Object Decomposition](#📱-example-1-god-object-decomposition-iosswift) pattern
 
-**If you have security or compliance concerns**: Follow the [Payment Security](#🌐-example-2-web-api-legacy-payment-system) pattern
+**If you have security or compliance concerns**: Follow the [Payment Security](#🌐-example-2-legacy-payment-system-web-apijavascript) pattern
 
-**If you have complex UI components**: Follow the [React Component](#📊-example-3-react-component-god-object) pattern
+**If you have complex UI components**: Follow the [UI Component](#📊-example-3-ui-component-god-object-reactjavascript) pattern
+
+*All patterns are language-agnostic and can be adapted to Java, Python, C#, Swift, JavaScript, etc.*
 
 ### Success Metrics to Track
 
