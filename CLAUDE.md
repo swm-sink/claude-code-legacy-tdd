@@ -10,7 +10,7 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
 
 <claude_4_behavior interpretation="STRICT_ENFORCEMENT">
   <legacy_code_mode enforcement="MANDATORY">
-    <safety_first>NEVER modify legacy code without 90%+ characterization test coverage</safety_first>
+    <safety_first>NEVER modify legacy code without 90%+ characterization test coverage - industry exemplary standard (Google: 90% exemplary, Feathers: comprehensive coverage required)</safety_first>
     <characterization_principle>Document actual behavior, not intended behavior</characterization_principle>
     <rollback_ready>Every change must have immediate rollback capability</rollback_ready>
     <security_baseline>Establish security state before any modifications</security_baseline>
@@ -53,29 +53,29 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
   <phase_2_safety_net prerequisite="assessment_complete" blocking="true">
     <mandatory_sequence>
       1. /legacy-characterize-behavior (for all critical components)
-      2. /legacy-safety-net-create
+      2. /legacy-safety-net
       3. /legacy-seam-identify
-      4. /legacy-rollback-prepare
+      4. /legacy-mock-generator
+      5. /legacy-rollback-prepare
     </mandatory_sequence>
-    <coverage_requirement>70% minimum characterization test coverage</coverage_requirement>
-    <blocks_until_complete>Transformation commands BLOCKED until safety net complete</blocks_until_complete>
+    <coverage_requirement>90% minimum characterization test coverage - industry exemplary standard for safe refactoring</coverage_requirement>
+    <blocks_until_complete>Transformation commands BLOCKED until 90% coverage achieved - prevents production failures</blocks_until_complete>
   </phase_2_safety_net>
 
-  <phase_3_preparation prerequisite="safety_net_complete">
+  <phase_3_preparation prerequisite="safety_net_recommended">
     <dependency_breaking>
-      1. /legacy-mock-generator
-      2. /legacy-dependency-inject  
-      3. /legacy-extract-interface
+      1. /legacy-dependency-inject  
+      2. /legacy-extract-interface
     </dependency_breaking>
     <testability_enhancement>Make legacy code testable through seams and injection</testability_enhancement>
   </phase_3_preparation>
 
-  <phase_4_transformation prerequisite="preparation_complete">
+  <phase_4_transformation prerequisite="minimum_safety_achieved">
     <safe_modification>
-      1. /legacy-sprout-method (preferred for new features)
-      2. /legacy-sprout-class (for significant new functionality)
-      3. /legacy-god-object-split (with comprehensive tests)
-      4. /legacy-method-extract (incremental refactoring)
+      1. /legacy-sprout (preferred for new features)
+      2. /legacy-sprout (for significant new functionality)
+      3. /legacy-extract-method (incremental refactoring)
+      4. /legacy-extract-interface (for god object splitting)
       5. /legacy-antipattern-fix (systematic improvement)
     </safe_modification>
     <validation_requirement>Every change must validate against characterization tests</validation_requirement>
@@ -97,7 +97,7 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
     <max_methods_per_class>20</max_methods_per_class>
     <auto_detection>Scan for classes exceeding limits during any modification</auto_detection>
     <blocking_behavior>REFUSE to create or modify classes that violate limits</blocking_behavior>
-    <alternative_suggestion>Suggest /legacy-god-object-split when limits approached</alternative_suggestion>
+    <alternative_suggestion>Suggest /legacy-extract-method and /legacy-extract-interface when limits approached</alternative_suggestion>
   </god_object_prevention>
   
   <method_complexity_limits>
@@ -144,9 +144,15 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
 
 ## 📊 Coverage and Quality Requirements
 
+**🔬 RESEARCH-BACKED STANDARDS (2024-2025)**
+- **Google Standards**: 60% acceptable, 75% commendable, **90% exemplary**
+- **Industry Average**: 74-76% (study of 47 projects)
+- **Michael Feathers**: "Close to 100% test coverage" for targeted refactoring areas
+- **Production Risk**: Without comprehensive tests, "bugs may slip through undetected, leading to production issues and customer impact"
+
 <quality_gates enforcement="BLOCKING">
   <test_coverage>
-    <minimum_before_changes>70%</minimum_before_changes>
+    <minimum_before_changes>90%</minimum_before_changes>
     <target_for_new_code>95%</target_for_new_code>
     <critical_paths>100%</critical_paths>
     <security_components>100%</security_components>
@@ -179,7 +185,7 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
   <workflow_patterns>
     <sequential_execution>Execute commands in proper dependency order for safety</sequential_execution>
     <prerequisite_validation>Verify all prerequisites before command execution</prerequisite_validation>
-    <safety_enforcement>Enforce 90% coverage and safety requirements throughout</safety_enforcement>
+    <safety_enforcement>Enforce 90% coverage (Google exemplary standard) and safety requirements throughout</safety_enforcement>
   </workflow_patterns>
 </claude_code_integration>
 
@@ -281,7 +287,7 @@ This file provides guidance to Claude Code when working with the Legacy Code TDD
 All slash commands in `.claude/commands/` follow this framework's principles:
 - Safety-first approach with mandatory prerequisites
 - Comprehensive validation and rollback procedures  
-- Integration with coordination system
+- Integration with Claude Code native capabilities
 - Security and quality enforcement
 - Clear success criteria and next steps
 

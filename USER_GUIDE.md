@@ -158,7 +158,7 @@ Create comprehensive protection before making any changes:
 
 ```bash
 # Build characterization tests for existing behavior
-/legacy-safety-net-create --target-coverage=90 --include-performance
+/legacy-safety-net --target-coverage=90 --include-performance
 
 # Identify where dependencies can be safely injected
 /legacy-seam-identify --focus=constructors --include-method-seams
@@ -224,7 +224,7 @@ func testCalculateDiscountCurrentBehavior() {
 ```
 
 **Practice:**
-1. Run `/legacy-safety-net-create` on a specific module
+1. Run `/legacy-safety-net` on a specific module
 2. Examine the generated characterization tests
 3. Understand how they preserve current behavior
 4. See how they would catch any changes during refactoring
@@ -285,7 +285,7 @@ Learn the safest transformation technique - adding new functionality:
 
 ```bash
 # Add new functionality using sprout method
-/legacy-sprout-method --target="PaymentProcessor.processPayment" --feature="fraud-detection"
+/legacy-sprout --target="PaymentProcessor.processPayment" --feature="fraud-detection"
 ```
 
 **Before: Existing Legacy Code (Unchanged)**
@@ -332,7 +332,7 @@ Create entirely new classes for substantial functionality:
 
 ```bash
 # Create new class for complex functionality
-/legacy-sprout-class --feature="analytics-engine" --integration-point="UserInteractionTracker"
+/legacy-sprout --feature="analytics-engine" --integration-point="UserInteractionTracker"
 ```
 
 **NEW: Sprouted Class (Modern, Fully Tested)**
@@ -532,11 +532,11 @@ func createAPIService() -> APIServiceProtocol {
 /legacy-dependency-analysis --target="SuperManager" --identify-seams
 
 # Phase 3: Create safety net
-/legacy-safety-net-create --target="SuperManager" --coverage=95
+/legacy-safety-net --target="SuperManager" --coverage=95
 
 # Phase 4: Split using multiple techniques
-/legacy-sprout-class --feature="user-management" --extract-from="SuperManager"
-/legacy-sprout-class --feature="payment-processing" --extract-from="SuperManager"
+/legacy-sprout --feature="user-management" --extract-from="SuperManager"
+/legacy-sprout --feature="payment-processing" --extract-from="SuperManager"
 /legacy-extract-method --target="SuperManager.processEverything" --split-by-responsibility
 
 # Phase 5: Validate transformation
@@ -585,10 +585,10 @@ func createAPIService() -> APIServiceProtocol {
 /legacy-assess-risk --focus=performance --include-profiling
 
 # Create performance characterization tests
-/legacy-safety-net-create --include-performance --benchmark-critical-paths
+/legacy-safety-net --include-performance --benchmark-critical-paths
 
 # Apply performance transformations
-/legacy-sprout-method --target="SlowMethod" --feature="caching"
+/legacy-sprout --target="SlowMethod" --feature="caching"
 /legacy-wrap-method --target="DatabaseQuery" --enhancement="connection-pooling"
 
 # Validate improvements
@@ -604,10 +604,10 @@ func createAPIService() -> APIServiceProtocol {
 /legacy-security-baseline --comprehensive --include-dependencies
 
 # Create security characterization tests
-/legacy-safety-net-create --focus=security --test-attack-vectors
+/legacy-safety-net --focus=security --test-attack-vectors
 
 # Apply security transformations
-/legacy-sprout-class --feature="input-validation" --security-focused
+/legacy-sprout --feature="input-validation" --security-focused
 /legacy-wrap-method --target="AuthenticationService" --enhancement="security-logging"
 
 # Validate security improvements

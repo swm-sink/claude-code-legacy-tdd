@@ -64,7 +64,7 @@ Before changing ANY code, establish comprehensive safety measures:
 
 ```bash
 # Create characterization tests for existing behavior
-/legacy-safety-net-create
+/legacy-safety-net
 
 # Identify where dependencies can be injected
 /legacy-seam-identify
@@ -88,10 +88,10 @@ Choose the safest transformation technique - adding new functionality:
 
 ```bash
 # Add new functionality without touching existing code
-/legacy-sprout-method --target="ClassName.methodName" --feature="logging"
+/legacy-sprout --target="ClassName.methodName" --feature="logging"
 
 # OR create a new class for substantial functionality
-/legacy-sprout-class --feature="analytics" --integration-point="PaymentProcessor"
+/legacy-sprout --feature="analytics" --integration-point="PaymentProcessor"
 ```
 
 **What Happens:**
@@ -191,7 +191,7 @@ Share your success:
 - **Check**: Verify you have `package.json`, `Cargo.toml`, or similar
 
 **❌ "Insufficient coverage for safety"**
-- **Solution**: Start with `/legacy-safety-net-create` to build coverage
+- **Solution**: Start with `/legacy-safety-net` to build coverage
 - **Note**: This is a feature, not a bug - we prioritize safety
 
 **❌ "Git repository required"**

@@ -42,7 +42,7 @@ RECOMMENDATION: REQUIRES EXTENSIVE SAFETY NET BEFORE TRANSFORMATION
 
 ```bash
 # Step 2: Create comprehensive safety net
-/legacy-safety-net-create
+/legacy-safety-net
 ```
 
 **Generated Characterization Tests:**
@@ -112,7 +112,7 @@ SAFETY NET STATUS: ✅ READY FOR TRANSFORMATION
 
 ```bash
 # Step 4: Extract authentication using sprout class
-/legacy-sprout-class --feature="authentication-service" --integration-point="UserManager"
+/legacy-sprout --feature="authentication-service" --integration-point="UserManager"
 ```
 
 **Before: God Object (Unchanged)**
@@ -455,7 +455,7 @@ IMMEDIATE ACTIONS REQUIRED:
 
 ```bash
 # Build security-focused safety net
-/legacy-safety-net-create --focus="security" --include-vulnerability-tests
+/legacy-safety-net --focus="security" --include-vulnerability-tests
 ```
 
 **Security Characterization Tests:**
@@ -501,7 +501,7 @@ describe('PaymentProcessor Security Characterization', () => {
 
 ```bash
 # Create new secure payment service
-/legacy-sprout-class --feature="secure-payment-service" --security-focused
+/legacy-sprout --feature="secure-payment-service" --security-focused
 ```
 
 **New Secure Implementation:**
@@ -885,7 +885,7 @@ RECOMMENDED APPROACH: COMPONENT DECOMPOSITION + CUSTOM HOOKS
 
 ```bash
 # Create comprehensive test coverage for React component
-/legacy-safety-net-create --framework="react" --include-integration-tests
+/legacy-safety-net --framework="react" --include-integration-tests
 ```
 
 **React Characterization Tests:**
@@ -1111,7 +1111,7 @@ describe('useDashboardData', () => {
 
 ```bash
 # Extract UI components using sprout class pattern
-/legacy-sprout-class --feature="dashboard-components" --extract-ui
+/legacy-sprout --feature="dashboard-components" --extract-ui
 ```
 
 **Extracted Components:**

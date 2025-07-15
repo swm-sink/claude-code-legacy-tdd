@@ -35,7 +35,8 @@
 A battle-tested legacy code transformation system that enables:
 
 ### 🛡️ **Safety-First Transformation**
-- **90% test coverage minimum** before any changes
+- **90% test coverage minimum** before any changes - industry exemplary standard (Google)
+- **Research-backed requirement**: 62.5% of organizations cite insufficient tests as biggest modernization challenge
 - **Characterization tests** capture existing behavior (including bugs)
 - **Rollback capabilities** under 5 minutes for any change
 - **Feature flags** enable instant rollback
@@ -80,7 +81,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 │ • Security Baseline│      │ • Rollback Prepare  │      │                     │     │                     │
 └─────────────────────┘      └─────────────────────┘      └─────────────────────┘     └─────────────────────┘
  
-        5 Commands                   4 Commands                   11 Commands                  4 Commands
+        5 Commands                   5 Commands                   10 Commands                  4 Commands
      MANDATORY ORDER              MANDATORY ORDER               SAFE TO EXECUTE           CONTINUOUS VALIDATION
 ```
 
@@ -88,7 +89,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 
 **🚨 Mandatory Prerequisites:**
 - Phase 2 commands BLOCKED until Phase 1 complete
-- Transformation commands BLOCKED until 90% test coverage
+- Transformation commands BLOCKED until 90% test coverage achieved
 - Every command includes rollback procedures
 - Feature flag integration for safe rollouts
 
@@ -111,30 +112,29 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 | `/legacy-antipattern-scan` | Detect code quality and LLM antipatterns | Low | High |
 | `/legacy-security-baseline` | Document security posture and vulnerabilities | Low | Critical |
 
-### Phase 2: Safety Infrastructure (4 Commands)
+### Phase 2: Safety Infrastructure (5 Commands)
 **🎯 Goal:** Build comprehensive protection before changes
 
 | Command | Purpose | Risk | Prerequisites |
 |---------|---------|------|---------------|
-| `/legacy-safety-net-create` | Establish characterization tests and baselines | Medium | Assessment complete |
+| `/legacy-characterize-behavior` | Document existing behavior exactly | Low | Assessment complete |
+| `/legacy-safety-net` | Establish characterization tests and baselines | Medium | Assessment complete |
 | `/legacy-seam-identify` | Find dependency injection points | Low | Safety net ready |
 | `/legacy-mock-generator` | Create test doubles for dependencies | Low | Seams identified |
 | `/legacy-rollback-prepare` | Ensure every change can be reverted | Medium | Safety infrastructure |
 
-### Phase 3: Safe Transformation (11 Commands)
+### Phase 3: Safe Transformation (10 Commands)
 **🎯 Goal:** Safely modify and improve legacy code
 
 | Command | Purpose | Risk | Best For |
 |---------|---------|------|----------|
-| `/legacy-sprout-method` | Add new functionality safely | Low | New features |
-| `/legacy-sprout-class` | Create isolated new classes | Low | Substantial features |
+| `/legacy-sprout` | Add new functionality safely | Low | New features |
 | `/legacy-extract-method` | Reduce complexity incrementally | Medium | Large methods |
 | `/legacy-extract-interface` | Create testable abstractions | Low | Dependency breaking |
 | `/legacy-wrap-method` | Enhance existing methods | Low | Cross-cutting concerns |
 | `/legacy-dependency-inject` | Break hard dependencies | Medium | Testability |
 | `/legacy-antipattern-fix` | Systematic quality improvement | Medium | Code smells |
 | `/legacy-parallel-change` | Risk-free major changes | Low | Large migrations |
-| `/legacy-characterize-behavior` | Document existing behavior exactly | Low | Safety net creation |
 | `/legacy-rollback-test` | Validate rollback procedures | Low | Emergency preparedness |
 | `/legacy-assess` | Comprehensive system assessment | Low | Overall health check |
 
@@ -153,7 +153,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 ### 15-Minute Quick Wins
 > *"Ran assessment commands and identified 15 critical risks we didn't know existed"*
 
-> *"Used `/legacy-sprout-method` to add analytics without touching legacy payment code"*
+> *"Used `/legacy-sprout` to add analytics without touching legacy payment code"*
 
 ### 1-Hour Transformations
 > *"Complete safety hardening with characterization tests - no more surprises in production"*
