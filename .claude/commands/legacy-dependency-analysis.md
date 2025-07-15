@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read"]
+description: "Analyze dependency coupling, identify circular dependencies, and discover seam opportunities for dependency injection"
+---
+
 # Legacy Dependency Analysis - Coupling and Architecture Assessment
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" -o -name "*.go" | xargs grep -l "import\|require\|#include" | head -20
+
+!grep -r "singleton\|shared\|default\|instance" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -10
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "global\|static" | head -10
+
+## File References
+
+@package.json @requirements.txt @pom.xml @build.gradle @Gemfile @go.mod @project.pbxproj @tsconfig.json
 
 **Command**: `/legacy-dependency-analysis`  
 **Phase**: Initial Assessment  
@@ -132,7 +149,6 @@ Use your code analysis capabilities to provide specific examples with file names
 - Actionable plan for implementing dependency injection
 
 ## Integration
-- Updates `agent-comms/coordination.json` with dependency analysis results
 - Provides input for seam identification and mock generation commands
 - Establishes baseline for measuring coupling reduction over time
 - Guides safe transformation approach based on coupling complexity

@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Safely extract methods from large, complex functions to improve readability while preserving all existing behavior"
+---
+
 # Legacy Method Extraction - Safe Refactoring Through Method Decomposition
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -A 50 "def \|function \|public \|private " | grep -c "^--" && echo "Methods found"
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs wc -l | sort -nr | head -5
+
+!git log --oneline -3 && echo "\n=== Recent commits ==="
+
+## File References
+
+@characterization-tests/ @coverage-report.json @safety-net-config.json @rollback-procedures.md
 
 **Command**: `/legacy-extract-method`  
 **Phase**: Transformation  
-**Coverage Requirement**: 90%+ coverage + safety net complete (blocks without this)  
+**Coverage Requirement**: 90% coverage + safety net complete (Google exemplary standard - blocks without this)  
 **Risk Level**: Medium (modifies existing code with comprehensive safety net)
 
 ## Objective

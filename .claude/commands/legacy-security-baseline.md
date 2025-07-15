@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "WebSearch"]
+description: "Establish comprehensive security baseline with vulnerability analysis and OWASP ASVS 5.0 compliance assessment"
+---
+
 # Legacy Security Baseline - Comprehensive Security Assessment
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "password\|secret\|key\|token" | head -10
+
+!grep -r "http://\|localhost\|127\.0\.0\.1" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" --include="*.json" | head -10
+
+!find . -name "*.pem" -o -name "*.key" -o -name "*.crt" -o -name "*.p12" | head -10
+
+## File References
+
+@.env @config.json @settings.py @application.properties @Info.plist @package.json
 
 **Command**: `/legacy-security-baseline`  
 **Phase**: Initial Assessment  
@@ -149,7 +166,6 @@ Use your security analysis capabilities to provide specific examples with file n
 - Security baseline documented for transformation planning
 
 ## Integration
-- Updates `agent-comms/coordination.json` with security baseline results
 - Provides security requirements for safety net creation
 - Establishes security monitoring requirements for transformation
 - Guides security-focused characterization testing

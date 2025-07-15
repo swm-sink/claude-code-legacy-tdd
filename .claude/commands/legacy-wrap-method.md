@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Safely add new behavior to existing methods using wrap method technique, preserving all original functionality"
+---
+
 # Legacy Method Wrapping - Safe Behavior Modification Through Delegation
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "def \|function \|public \|private " | head -10
+
+!grep -r "wrapper\|decorator\|proxy" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -10
+
+!git log --oneline -3 && echo "\n=== Recent commits ==="
+
+## File References
+
+@method-analysis.json @characterization-tests/ @wrapper-patterns/ @proxy-implementations/
 
 **Command**: `/legacy-wrap-method`  
 **Phase**: Transformation  

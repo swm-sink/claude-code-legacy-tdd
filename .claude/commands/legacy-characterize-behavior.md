@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Create comprehensive characterization tests that preserve actual current behavior of legacy code"
+---
+
 # Legacy Characterization Testing - Behavior Documentation and Preservation
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "class\|def\|function" | head -20
+
+!find . -name "*test*" -o -name "*spec*" -o -name "test_*" | grep -E "(characterization|golden|approval)" | head -10
+
+!ls -la test* spec* Test* || echo "No test directories found"
+
+## File References
+
+@jest.config.js @pytest.ini @pom.xml @Package.swift @coverage.xml @golden-masters/
 
 **Command**: `/legacy-characterize-behavior`  
 **Phase**: Safety Infrastructure Creation  
-**Coverage Requirement**: 90%+ coverage established (blocks without this)  
+**Coverage Requirement**: 90% coverage established (Google exemplary standard - blocks without this)  
 **Risk Level**: Medium (creates comprehensive test suite)
 
 ## Objective

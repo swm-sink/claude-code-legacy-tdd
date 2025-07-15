@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Extract interfaces/protocols from concrete dependencies to enable dependency injection and improve testability"
+---
+
 # Legacy Interface Extraction - Dependency Abstraction for Testability
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "class\|interface\|protocol\|abstract" | head -10
+
+!grep -r "import\|require\|#include" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -20
+
+!ls -la interfaces/ protocols/ abstractions/ || echo "No existing abstraction directories found"
+
+## File References
+
+@seam-analysis.json @dependency-analysis.json @concrete-dependencies.json @package.json
 
 **Command**: `/legacy-extract-interface`  
 **Phase**: Transformation  
-**Coverage Requirement**: 90%+ coverage + seam analysis complete (blocks without this)  
+**Coverage Requirement**: 90% coverage + seam analysis complete (Google exemplary standard - blocks without this)  
 **Risk Level**: Medium (creates abstractions for existing dependencies)
 
 ## Objective

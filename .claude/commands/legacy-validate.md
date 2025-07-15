@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Establish comprehensive validation framework that continuously monitors transformation progress and validates safety requirements"
+---
+
 # Legacy Validation Framework - Comprehensive Transformation Validation
+
+## Dynamic Context Gathering
+
+!find . -name "*test*" -o -name "*spec*" | wc -l && echo "Test files to validate"
+
+!find . -name "validation*" -o -name "monitoring*" -o -name "safety*" | head -10
+
+!git status --porcelain && git log --oneline -3
+
+## File References
+
+@safety-infrastructure.json @characterization-tests/ @coverage-report.json @rollback-procedures.json
 
 **Command**: `/legacy-validate`  
 **Phase**: Safety Infrastructure Creation (Final)  

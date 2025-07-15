@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Systematically eliminate identified antipatterns while maintaining all existing functionality through comprehensive safety testing"
+---
+
 # Legacy Antipattern Fix - Systematic Code Quality Improvement
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs wc -l | sort -nr | head -10
+
+!grep -r "class.*Manager\|class.*Helper\|class.*Utility" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -10
+
+!git log --oneline -5 && echo "\n=== Recent commits ==="
+
+## File References
+
+@antipattern-analysis.json @god-objects.json @characterization-tests/ @coverage-report.json
 
 **Command**: `/legacy-antipattern-fix`  
 **Phase**: Transformation  

@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Establish comprehensive performance baselines and validate that transformations maintain or improve performance characteristics"
+---
+
 # Legacy Performance Baseline - Transformation Performance Validation
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "performance\|benchmark\|time\|speed" | head -10
+
+!ls -la performance-tests/ benchmarks/ load-tests/ || echo "No performance testing directories found"
+
+!ps aux | head -5 && echo "\n=== Current system performance ==="
+
+## File References
+
+@performance-config.json @benchmark-results.json @load-test-scenarios.json @memory-profiles.json
 
 **Command**: `/legacy-performance-baseline`  
 **Phase**: Quality Assurance  

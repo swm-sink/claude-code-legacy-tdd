@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Validate test effectiveness by introducing controlled mutations to legacy code and ensuring tests detect behavioral changes"
+---
+
 # Legacy Mutation Testing - Test Effectiveness Validation
+
+## Dynamic Context Gathering
+
+!find . -name "*test*" -o -name "*spec*" | wc -l && echo "Total test files"
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "assert\|expect\|test" | wc -l && echo "Files with assertions"
+
+!ls -la mutation-testing/ coverage-reports/ || echo "No mutation testing directories found"
+
+## File References
+
+@coverage-report.json @characterization-tests/ @mutation-config.json @safety-net-status.json
 
 **Command**: `/legacy-mutation-test`  
 **Phase**: Quality Assurance  

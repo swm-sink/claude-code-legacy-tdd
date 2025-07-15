@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Establish comprehensive rollback procedures and safety mechanisms for immediate restoration capability"
+---
+
 # Legacy Rollback Preparation - Comprehensive Safety Net Establishment
+
+## Dynamic Context Gathering
+
+!git status --porcelain && git log --oneline -5 && echo "\n=== Current git state ==="
+
+!find . -name "*.sql" -o -name "*migration*" -o -name "*schema*" | head -10
+
+!find . -name "*.env*" -o -name "config*" -o -name "*settings*" | head -10
+
+## File References
+
+@package.json @requirements.txt @pom.xml @.env @config.json @migration/ @schema/
 
 **Command**: `/legacy-rollback-prepare`  
 **Phase**: Safety Infrastructure Creation  

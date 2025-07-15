@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit", "WebSearch"]
+description: "Generate comprehensive security tests to validate security controls and ensure transformations don't introduce vulnerabilities"
+---
+
 # Legacy Security Test Generation - Comprehensive Security Validation
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "password\|auth\|token\|encrypt\|decrypt" | head -10
+
+!grep -r "input\|user.*data\|request\|response" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -10
+
+!ls -la security-tests/ vulnerability-tests/ || echo "No security testing directories found"
+
+## File References
+
+@security-baseline.json @vulnerability-analysis.json @owasp-asvs-compliance.json @authentication-flows.json
 
 **Command**: `/legacy-security-test-generate`  
 **Phase**: Quality Assurance  

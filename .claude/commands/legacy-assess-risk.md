@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "WebSearch"]
+description: "Analyze legacy codebase for transformation risks and prioritization using Michael Feathers' principles"
+---
+
 # Legacy Code Risk Assessment
+
+## Dynamic Context Gathering
+
+!pwd && echo "\n=== Project Structure ===" && find . -type f -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" -o -name "*.go" -o -name "*.rb" -o -name "*.php" -o -name "*.cs" | head -20
+
+!git status --porcelain && echo "\n=== Git Status ===" && git log --oneline -5
+
+!wc -l $(find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" -o -name "*.go" -o -name "*.rb" -o -name "*.php" -o -name "*.cs" | head -10) | sort -nr | head -10
+
+## File References
+
+@package.json @requirements.txt @pom.xml @build.gradle @Gemfile @composer.json @go.mod @project.pbxproj
 
 Analyze this codebase for legacy code transformation risks and prioritization following Michael Feathers' "Working Effectively with Legacy Code" principles.
 

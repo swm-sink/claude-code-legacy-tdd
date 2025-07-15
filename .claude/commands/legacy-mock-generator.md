@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Generate comprehensive test doubles (mocks, stubs, fakes) for all identified seams to enable safe testing"
+---
+
 # Legacy Mock Generator - Test Double Creation for Identified Seams
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "import\|require\|#include" | head -10
+
+!find . -name "*mock*" -o -name "*stub*" -o -name "*fake*" | head -10
+
+!ls -la test-doubles/ mocks/ stubs/ || echo "No existing mock directories found"
+
+## File References
+
+@seam-analysis.json @dependency-analysis.json @package.json @requirements.txt @pom.xml
 
 **Command**: `/legacy-mock-generator`  
 **Phase**: Safety Infrastructure Creation  
-**Coverage Requirement**: 90%+ coverage + seam analysis complete (blocks without this)  
+**Coverage Requirement**: 90% coverage + seam analysis complete (Google exemplary standard - blocks without this)  
 **Risk Level**: Low (test infrastructure only, no production code changes)
 
 ## Objective

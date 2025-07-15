@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Test and validate all rollback procedures in a safe, isolated environment to ensure emergency recovery mechanisms work correctly"
+---
+
 # Legacy Rollback Testing - Validation of Emergency Recovery Procedures
+
+## Dynamic Context Gathering
+
+!git log --oneline -5 && echo "\n=== Recent commits for rollback testing ==="
+
+!find . -name "rollback*" -o -name "backup*" -o -name "recovery*" | head -10
+
+!ls -la rollback-procedures/ emergency-recovery/ || echo "No rollback directories found"
+
+## File References
+
+@rollback-procedures.json @emergency-recovery.json @backup-configurations.json @git-rollback-tags.json
 
 **Command**: `/legacy-rollback-test`  
 **Phase**: Safety Infrastructure Creation  

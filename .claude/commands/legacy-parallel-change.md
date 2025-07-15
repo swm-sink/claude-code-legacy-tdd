@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Implement large-scale changes safely using parallel change technique with new implementation alongside legacy code"
+---
+
 # Legacy Parallel Change - Safe Migration Through Dual Implementation
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "feature.*flag\|toggle\|config" | head -10
+
+!ls -la new-implementation/ parallel-change/ migration/ || echo "No parallel change directories found"
+
+!git status --porcelain && git log --oneline -3
+
+## File References
+
+@feature-flags.json @parallel-implementation/ @migration-plan.json @characterization-tests/
 
 **Command**: `/legacy-parallel-change`  
 **Phase**: Transformation  

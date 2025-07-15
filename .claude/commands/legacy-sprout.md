@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Safely add new functionality using sprout method and sprout class techniques without modifying existing legacy code"
+---
+
 # Legacy Sprout - Safe New Functionality Addition
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "class\|def\|function" | head -20
+
+!find . -name "*test*" -o -name "*spec*" | wc -l && echo "Current test files"
+
+!git status --porcelain && git log --oneline -3
+
+## File References
+
+@characterization-tests/ @package.json @requirements.txt @pom.xml @coverage-report.json
 
 **Command**: `/legacy-sprout`  
 **Phase**: Transformation  
-**Coverage Requirement**: Maintain 90%+ coverage + 100% coverage for new code (blocks without this)  
+**Coverage Requirement**: Maintain 90% coverage + 100% coverage for new code (Google exemplary standard - blocks without this)  
 **Risk Level**: Low (adds new code without modifying existing legacy code)
 
 ## Objective

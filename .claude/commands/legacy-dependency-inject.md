@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Implement dependency injection at identified seams to break hard dependencies and improve testability"
+---
+
 # Legacy Dependency Injection - Breaking Hard Dependencies for Testability
+
+## Dynamic Context Gathering
+
+!grep -r "new \|singleton\|shared\|getInstance" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -10
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "__init__\|constructor\|@inject" | head -10
+
+!ls -la interfaces/ protocols/ abstractions/ || echo "No abstraction directories found"
+
+## File References
+
+@seam-analysis.json @interfaces/ @abstractions/ @dependency-container.json @mocks/
 
 **Command**: `/legacy-dependency-inject`  
 **Phase**: Transformation  
-**Coverage Requirement**: 90%+ coverage + seam analysis + interface extraction complete (blocks without this)  
+**Coverage Requirement**: 90% coverage + seam analysis + interface extraction complete (Google exemplary standard - blocks without this)  
 **Risk Level**: Medium (modifies dependency relationships with comprehensive safety net)
 
 ## Objective

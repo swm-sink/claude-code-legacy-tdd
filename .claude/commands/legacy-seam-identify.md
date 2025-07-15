@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read"]
+description: "Identify and catalog specific seams (dependency injection points) in legacy code for safe testing"
+---
+
 # Legacy Seam Identification - Dependency Injection Points Discovery
+
+## Dynamic Context Gathering
+
+!grep -r "new \|import \|require(\|#include" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -20
+
+!grep -r "singleton\|shared\|default\|getInstance" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | head -10
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "__init__\|constructor\|init" | head -10
+
+## File References
+
+@dependency-analysis.json @coupling-report.json @package.json @requirements.txt @pom.xml
 
 **Command**: `/legacy-seam-identify`  
 **Phase**: Safety Infrastructure Creation  

@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read"]
+description: "Generate comprehensive test coverage report for legacy codebase baseline and gap analysis"
+---
+
 # Legacy Code Coverage Analysis
+
+## Dynamic Context Gathering
+
+!find . -name "*test*" -o -name "*spec*" -o -name "test_*" -o -name "*_test.*" | head -20
+
+!find . -name "coverage*" -o -name ".coverage" -o -name "*.lcov" -o -name "coverage.xml" | head -10
+
+!ls -la | grep -E "(jest|pytest|mocha|rspec|gradle|maven|xcode)" || echo "No common test runners found"
+
+## File References
+
+@jest.config.js @pytest.ini @coverage.xml @.coveragerc @package.json @pom.xml @build.gradle
 
 Perform comprehensive test coverage analysis for this legacy codebase and establish the 90%+ coverage requirement that must be met before any transformation work begins.
 

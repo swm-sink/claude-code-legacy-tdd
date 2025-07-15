@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "WebSearch"]
+description: "Perform complete legacy codebase analysis combining risk assessment, coverage analysis, dependency mapping, and security baseline"
+---
+
 # Legacy Code Assessment - Comprehensive Analysis
+
+## Dynamic Context Gathering
+
+!find . -type f -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" -o -name "*.go" -o -name "*.rb" -o -name "*.php" -o -name "*.cs" | wc -l && echo "Source files found"
+
+!git log --oneline -10 && echo "\n=== Recent commit history ==="
+
+!ls -la package.json requirements.txt pom.xml build.gradle Gemfile composer.json go.mod project.pbxproj 2>/dev/null || echo "No package manifests found"
+
+## File References
+
+@package.json @requirements.txt @pom.xml @build.gradle @Gemfile @composer.json @go.mod @project.pbxproj
 
 **Command**: `/legacy-assess`  
 **Phase**: Initial Assessment  

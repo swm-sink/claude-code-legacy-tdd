@@ -1,8 +1,25 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Create comprehensive safety infrastructure with 90%+ coverage before any legacy code transformation"
+---
+
 # Legacy Safety Net Creation - Comprehensive Protection Infrastructure
+
+## Dynamic Context Gathering
+
+!find . -name "*test*" -o -name "*spec*" -o -name "test_*" | wc -l && echo "Test files found"
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | wc -l && echo "Source files found"
+
+!git log --oneline -10 && echo "\n=== Recent commits for rollback reference ==="
+
+## File References
+
+@jest.config.js @pytest.ini @pom.xml @Package.swift @tsconfig.json @.coverage @package.json
 
 **Command**: `/legacy-safety-net`  
 **Phase**: Safety Infrastructure Creation  
-**Coverage Requirement**: 90%+ coverage established + seams identified (blocks without this)  
+**Coverage Requirement**: 90% coverage established + seams identified (industry exemplary standard - blocks without this)  
 **Risk Level**: Low (safety infrastructure creation, no production code changes)
 
 ## Objective

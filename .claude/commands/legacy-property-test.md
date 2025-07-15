@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read", "Write", "Edit", "MultiEdit"]
+description: "Implement property-based testing for complex algorithms to validate mathematical properties and behavioral contracts"
+---
+
 # Legacy Property Testing - Mathematical Properties and Invariant Validation
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "calculate\|algorithm\|sort\|math\|formula" | head -10
+
+!grep -r "for\|while\|if.*else\|switch" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | wc -l && echo "Complex logic patterns found"
+
+!ls -la property-tests/ invariant-tests/ || echo "No property testing directories found"
+
+## File References
+
+@algorithm-analysis.json @complex-methods.json @business-rules.json @coverage-report.json
 
 **Command**: `/legacy-property-test`  
 **Phase**: Quality Assurance  

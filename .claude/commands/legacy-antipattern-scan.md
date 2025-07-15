@@ -1,4 +1,21 @@
+---
+allowed-tools: ["Bash", "Glob", "Grep", "LS", "Read"]
+description: "Systematically detect code quality and LLM-specific antipatterns for prioritized improvement planning"
+---
+
 # Legacy Antipattern Scan - Code Quality and LLM Antipattern Detection
+
+## Dynamic Context Gathering
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs wc -l | sort -nr | head -10
+
+!grep -r "class\|def\|function\|method" . --include="*.py" --include="*.js" --include="*.java" --include="*.swift" --include="*.ts" | wc -l
+
+!find . -name "*.py" -o -name "*.js" -o -name "*.java" -o -name "*.swift" -o -name "*.ts" | xargs grep -l "Manager\|Helper\|Utility\|Controller" | head -10
+
+## File References
+
+@.eslintrc @.pylintrc @checkstyle.xml @swiftlint.yml @sonar-project.properties
 
 **Command**: `/legacy-antipattern-scan`  
 **Phase**: Initial Assessment  
@@ -126,7 +143,6 @@ Use your code analysis capabilities to provide specific examples with file names
 - Framework-specific antipattern identification
 
 ## Integration
-- Updates `agent-comms/coordination.json` with antipattern analysis results
 - Provides priority guidance for god object splitting and method extraction
 - Establishes baseline for tracking code quality improvements over time
 - Informs safety net creation priorities
