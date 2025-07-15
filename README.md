@@ -14,7 +14,7 @@
 
 ### Ready to Transform Legacy Code?
 **[Command Reference →](COMMAND_REFERENCE.md)**
-*All 18 commands organized by safety-first workflow*
+*All 24 commands organized by safety-first workflow*
 
 ### Want to Learn the System?
 **[User Guide →](USER_GUIDE.md)**
@@ -35,7 +35,7 @@
 A battle-tested legacy code transformation system that enables:
 
 ### 🛡️ **Safety-First Transformation**
-- **70% test coverage minimum** before any changes
+- **90% test coverage minimum** before any changes
 - **Characterization tests** capture existing behavior (including bugs)
 - **Rollback capabilities** under 5 minutes for any change
 - **Feature flags** enable instant rollback
@@ -80,7 +80,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 │ • Security Baseline│      │ • Rollback Prepare  │      │                     │     │                     │
 └─────────────────────┘      └─────────────────────┘      └─────────────────────┘     └─────────────────────┘
  
-        6 Commands                   4 Commands                    4 Commands                  4 Commands
+        5 Commands                   4 Commands                   11 Commands                  4 Commands
      MANDATORY ORDER              MANDATORY ORDER               SAFE TO EXECUTE           CONTINUOUS VALIDATION
 ```
 
@@ -88,7 +88,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 
 **🚨 Mandatory Prerequisites:**
 - Phase 2 commands BLOCKED until Phase 1 complete
-- Transformation commands BLOCKED until 70% test coverage
+- Transformation commands BLOCKED until 90% test coverage
 - Every command includes rollback procedures
 - Feature flag integration for safe rollouts
 
@@ -100,7 +100,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 
 ## 🏗️ Command Categories
 
-### Phase 1: Assessment (6 Commands)
+### Phase 1: Assessment (5 Commands)
 **🎯 Goal:** Understand legacy code before touching anything
 
 | Command | Purpose | Risk | Priority |
@@ -110,7 +110,6 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 | `/legacy-dependency-analysis` | Map coupling and seam opportunities | Low | High |
 | `/legacy-antipattern-scan` | Detect code quality and LLM antipatterns | Low | High |
 | `/legacy-security-baseline` | Document security posture and vulnerabilities | Low | Critical |
-| `/legacy-assessment-summary` | Synthesize findings and go/no-go decision | Low | Critical |
 
 ### Phase 2: Safety Infrastructure (4 Commands)
 **🎯 Goal:** Build comprehensive protection before changes
@@ -122,7 +121,7 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 | `/legacy-mock-generator` | Create test doubles for dependencies | Low | Seams identified |
 | `/legacy-rollback-prepare` | Ensure every change can be reverted | Medium | Safety infrastructure |
 
-### Phase 3: Safe Transformation (4 Commands)
+### Phase 3: Safe Transformation (11 Commands)
 **🎯 Goal:** Safely modify and improve legacy code
 
 | Command | Purpose | Risk | Best For |
@@ -130,15 +129,24 @@ Phase 1: ASSESSMENT          Phase 2: SAFETY NET         Phase 3: TRANSFORMATION
 | `/legacy-sprout-method` | Add new functionality safely | Low | New features |
 | `/legacy-sprout-class` | Create isolated new classes | Low | Substantial features |
 | `/legacy-extract-method` | Reduce complexity incrementally | Medium | Large methods |
+| `/legacy-extract-interface` | Create testable abstractions | Low | Dependency breaking |
 | `/legacy-wrap-method` | Enhance existing methods | Low | Cross-cutting concerns |
+| `/legacy-dependency-inject` | Break hard dependencies | Medium | Testability |
+| `/legacy-antipattern-fix` | Systematic quality improvement | Medium | Code smells |
+| `/legacy-parallel-change` | Risk-free major changes | Low | Large migrations |
+| `/legacy-characterize-behavior` | Document existing behavior exactly | Low | Safety net creation |
+| `/legacy-rollback-test` | Validate rollback procedures | Low | Emergency preparedness |
+| `/legacy-assess` | Comprehensive system assessment | Low | Overall health check |
 
-### Phase 4: Quality Validation (Coming Soon)
+### Phase 4: Quality Validation (4 Commands)
 **🎯 Goal:** Ensure transformation effectiveness
 
-- Mutation testing for test quality validation
-- Property-based testing for algorithmic verification
-- Security regression testing
-- Performance optimization validation
+| Command | Purpose | Risk | Focus |
+|---------|---------|------|---------|
+| `/legacy-mutation-test` | Validate test effectiveness | Low | Test quality |
+| `/legacy-property-test` | Verify algorithmic properties | Low | Complex algorithms |
+| `/legacy-security-test-generate` | Comprehensive security testing | Low | Vulnerability prevention |
+| `/legacy-performance-baseline` | Performance regression detection | Low | System optimization |
 
 ## 🚀 Success Stories
 
@@ -244,7 +252,7 @@ cd /path/to/your/legacy/project
 📁 Legacy Code TDD Framework
 ├── README.md                 ← You are here (navigation hub)
 ├── GETTING_STARTED.md        ← 15-minute setup and first success
-├── COMMAND_REFERENCE.md      ← All 18 commands with examples
+├── COMMAND_REFERENCE.md      ← All 24 commands with examples
 ├── USER_GUIDE.md            ← Progressive learning system
 ├── EXAMPLES.md              ← Real-world transformation examples
 ├── TROUBLESHOOTING.md       ← Common issues and solutions
@@ -252,16 +260,16 @@ cd /path/to/your/legacy/project
 └── .claude/commands/        ← Command implementations
     ├── legacy-assess-risk.md
     ├── legacy-coverage-report.md
-    └── ... (16 more commands)
+    └── ... (21 more commands)
 ```
 
 ## 🔧 Advanced Features
 
-### Multi-Agent Coordination
+### Claude Code Integration
 - **Parallel Execution**: Multiple commands run simultaneously
-- **Agent Communication**: Coordination through shared state
+- **Native Markdown Commands**: Natural language prompts for AI execution
 - **Workflow Orchestration**: Automatic phase management
-- **Conflict Prevention**: Agents coordinate to prevent interference
+- **Context Optimization**: Designed for LLM understanding and execution
 
 ### LLM Antipattern Prevention
 - **God Object Detection**: Automatic detection and splitting suggestions

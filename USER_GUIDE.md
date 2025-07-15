@@ -107,7 +107,7 @@ Create your transformation plan:
 
 ```bash
 # Understand what safety infrastructure you need
-/legacy-coverage-report --minimum-threshold=70 --focus=business-logic
+/legacy-coverage-report --minimum-threshold=90 --focus=business-logic
 /legacy-dependency-analysis --detect-cycles --identify-seams
 ```
 
@@ -158,7 +158,7 @@ Create comprehensive protection before making any changes:
 
 ```bash
 # Build characterization tests for existing behavior
-/legacy-safety-net-create --target-coverage=70 --include-performance
+/legacy-safety-net-create --target-coverage=90 --include-performance
 
 # Identify where dependencies can be safely injected
 /legacy-seam-identify --focus=constructors --include-method-seams
@@ -250,7 +250,7 @@ Validate that your safety infrastructure actually works:
 3. **Verify Mocks**: Ensure test doubles behave like real dependencies
 
 ### Level 2 Success Criteria ✅
-- [ ] 70%+ characterization test coverage for critical components
+- [ ] 90%+ characterization test coverage for critical components
 - [ ] All safety-critical features have 100% coverage
 - [ ] Seams identified for safe dependency injection
 - [ ] Mock objects created for all external dependencies

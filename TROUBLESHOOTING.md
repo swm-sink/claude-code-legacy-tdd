@@ -46,7 +46,7 @@ git reset --hard <last-known-good-commit>
 
 ### "Assessment command fails or gives unclear results"
 
-#### Problem: `/legacy-assess` exits with errors
+#### Problem: `/legacy-assess-risk` exits with errors
 ```
 Error: Unable to analyze codebase
 Exit code: 1
@@ -69,7 +69,7 @@ python -m py_compile src/**/*.py
 swiftc -syntax-only src/**/*.swift
 
 # 3. Run assessment with debugging
-/legacy-assess --debug --verbose
+/legacy-assess-risk --debug --verbose
 ```
 
 #### Problem: "Assessment results seem wrong or misleading"
@@ -81,7 +81,7 @@ Test Coverage: 0%
 **Diagnosis**:
 ```bash
 # 1. Verify assessment is scanning correct directories
-/legacy-assess --show-scan-paths
+/legacy-assess-risk --show-scan-paths
 
 # 2. Check if assessment is finding test files
 find . -name "*test*" -o -name "*Test*" -o -name "*spec*"
@@ -93,7 +93,7 @@ find . -name "*.js" -exec wc -l {} \; | sort -nr | head -10
 **Solutions**:
 - Ensure assessment scans all source directories
 - Verify test file naming conventions match framework expectations
-- Run assessment on specific high-risk files: `/legacy-assess --target="src/specific-file.js"`
+- Run assessment on specific high-risk files: `/legacy-assess-risk --target="src/specific-file.js"`
 
 ### "Assessment takes too long or hangs"
 
@@ -103,19 +103,19 @@ find . -name "*.js" -exec wc -l {} \; | sort -nr | head -10
 pkill -f "legacy-assess"
 
 # Run with timeout and limited scope
-timeout 300 /legacy-assess --quick-scan --max-files=100
+timeout 300 /legacy-assess-risk --quick-scan --max-files=100
 ```
 
 **Solutions**:
 ```bash
 # 1. Exclude large files/directories
-/legacy-assess --exclude="node_modules,build,dist,*.min.js"
+/legacy-assess-risk --exclude="node_modules,build,dist,*.min.js"
 
 # 2. Run incremental assessment
-/legacy-assess --incremental --since="1 week ago"
+/legacy-assess-risk --incremental --since="1 week ago"
 
 # 3. Focus on specific areas
-/legacy-assess --target-directory="src/core" --fast-mode
+/legacy-assess-risk --target-directory="src/core" --fast-mode"
 ```
 
 ---
@@ -229,7 +229,7 @@ npm run start-mock-services
 cp .env.test .env.characterization
 
 # 4. Re-run characterization
-/legacy-characterize --refresh --clean-environment
+/legacy-characterize-behavior --refresh --clean-environment
 ```
 
 **Solution 2: Data Dependencies**
@@ -361,7 +361,7 @@ npm run performance-profile
 /legacy-performance-compare --baseline=before-transformation
 
 # 3. Identify bottlenecks
-/legacy-assess --focus=performance --detailed
+/legacy-assess-risk --focus=performance --detailed"
 ```
 
 **Common Causes and Solutions**:
@@ -619,7 +619,7 @@ mkdir .legacy-framework/
 cp .eslintrc.js .legacy-framework/eslint.config.js
 
 # Modify framework to use isolated config
-/legacy-assess --config-dir=".legacy-framework"
+/legacy-assess-risk --config-dir=".legacy-framework"
 ```
 
 **Fix 2: Selective Tool Integration**
@@ -649,7 +649,7 @@ EOF
 **Approach 1: Start Small and Demonstrate Value**
 ```bash
 # Choose smallest, safest transformation first
-/legacy-assess --find-low-risk
+/legacy-assess-risk --find-low-risk
 
 # Show quick wins with sprouting
 /legacy-sprout --feature="simple-logging" --demo-mode
@@ -710,7 +710,7 @@ ENVIRONMENT=production /legacy-rollback-if-needed
 # Configure framework per service
 for service in services/*/; do
     cd "$service"
-    /legacy-assess --service-specific
+    /legacy-assess-risk --service-specific
     cd - > /dev/null
 done
 ```
@@ -732,28 +732,28 @@ time /legacy-assess
 **Enable Incremental Processing**
 ```bash
 # Only analyze changed files
-/legacy-assess --incremental --since="last-commit"
+/legacy-assess-risk --incremental --since="last-commit"
 
 # Cache analysis results
-/legacy-assess --cache-results --cache-dir=".legacy-cache"
+/legacy-assess-risk --cache-results --cache-dir=".legacy-cache"
 
 # Parallel processing
-/legacy-assess --parallel --max-workers=4
+/legacy-assess-risk --parallel --max-workers=4
 ```
 
 **Use Fast Mode for Development**
 ```bash
 # Quick assessment for development
-/legacy-assess --fast --focus="critical-only"
+/legacy-assess-risk --fast --focus="critical-only"
 
 # Full assessment for CI/CD
-/legacy-assess --comprehensive --all-checks
+/legacy-assess-risk --comprehensive --all-checks
 ```
 
 **Profile and Optimize**
 ```bash
 # Profile framework performance
-/legacy-assess --profile --output-timing
+/legacy-assess-risk --profile --output-timing
 
 # Identify bottlenecks
 /legacy-debug --performance --verbose
@@ -832,7 +832,7 @@ npm test -- --findRelatedTests src/UserManager.js
 /legacy-validate --comprehensive --report-issues
 
 # Monthly assessment updates
-/legacy-assess --refresh-baselines --update-targets
+/legacy-assess-risk --refresh-baselines --update-targets
 
 # Quarterly framework updates
 git pull origin main  # Update framework

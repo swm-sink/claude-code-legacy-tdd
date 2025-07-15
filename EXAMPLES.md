@@ -22,7 +22,7 @@ This guide provides detailed, step-by-step examples of transforming real legacy 
 
 ```bash
 # Step 1: Comprehensive assessment
-/legacy-assess
+/legacy-assess-risk
 ```
 
 **Assessment Results:**
@@ -42,7 +42,7 @@ RECOMMENDATION: REQUIRES EXTENSIVE SAFETY NET BEFORE TRANSFORMATION
 
 ```bash
 # Step 2: Create comprehensive safety net
-/legacy-safety-net
+/legacy-safety-net-create
 ```
 
 **Generated Characterization Tests:**
@@ -112,7 +112,7 @@ SAFETY NET STATUS: ✅ READY FOR TRANSFORMATION
 
 ```bash
 # Step 4: Extract authentication using sprout class
-/legacy-sprout --feature="authentication-service" --integration-point="UserManager"
+/legacy-sprout-class --feature="authentication-service" --integration-point="UserManager"
 ```
 
 **Before: God Object (Unchanged)**
@@ -286,7 +286,7 @@ class AuthenticationServiceTests: XCTestCase {
 
 ```bash
 # Step 5: Extract profile functionality
-/legacy-extract --target="UserManager" --extract="profile-management"
+/legacy-extract-method --target="UserManager" --extract="profile-management"
 ```
 
 **Extracted Profile Service:**
@@ -429,7 +429,7 @@ enum FeatureFlag: String {
 
 ```bash
 # Comprehensive assessment of payment system
-/legacy-assess --target="src/payment" --focus="security,complexity,coverage"
+/legacy-assess-risk --target="src/payment" --focus="security,complexity,coverage"
 ```
 
 **Assessment Results:**
@@ -455,7 +455,7 @@ IMMEDIATE ACTIONS REQUIRED:
 
 ```bash
 # Build security-focused safety net
-/legacy-safety-net --focus="security" --include-vulnerability-tests
+/legacy-safety-net-create --focus="security" --include-vulnerability-tests
 ```
 
 **Security Characterization Tests:**
@@ -501,7 +501,7 @@ describe('PaymentProcessor Security Characterization', () => {
 
 ```bash
 # Create new secure payment service
-/legacy-sprout --feature="secure-payment-service" --security-focused
+/legacy-sprout-class --feature="secure-payment-service" --security-focused
 ```
 
 **New Secure Implementation:**
@@ -864,7 +864,7 @@ MIGRATION STATUS:
 
 ```bash
 # Analyze React component complexity
-/legacy-assess --target="src/components/Dashboard.jsx" --framework="react"
+/legacy-assess-risk --target="src/components/Dashboard.jsx" --framework="react"
 ```
 
 **Assessment Results:**
@@ -885,7 +885,7 @@ RECOMMENDED APPROACH: COMPONENT DECOMPOSITION + CUSTOM HOOKS
 
 ```bash
 # Create comprehensive test coverage for React component
-/legacy-safety-net --framework="react" --include-integration-tests
+/legacy-safety-net-create --framework="react" --include-integration-tests
 ```
 
 **React Characterization Tests:**
@@ -963,7 +963,7 @@ describe('Dashboard Component Characterization', () => {
 
 ```bash
 # Extract data fetching logic into custom hooks
-/legacy-extract --target="Dashboard.jsx" --extract="custom-hooks" --pattern="data-fetching"
+/legacy-extract-method --target="Dashboard.jsx" --extract="custom-hooks" --pattern="data-fetching"
 ```
 
 **Extracted Data Fetching Hooks:**
@@ -1111,7 +1111,7 @@ describe('useDashboardData', () => {
 
 ```bash
 # Extract UI components using sprout class pattern
-/legacy-sprout --feature="dashboard-components" --extract-ui
+/legacy-sprout-class --feature="dashboard-components" --extract-ui
 ```
 
 **Extracted Components:**
@@ -1344,7 +1344,7 @@ PERFORMANCE IMPROVEMENTS:
 **Pattern**: Always start with comprehensive assessment
 ```bash
 # Every transformation starts the same way
-/legacy-assess
+/legacy-assess-risk
 # Never skip this step, regardless of time pressure
 ```
 

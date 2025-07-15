@@ -243,7 +243,7 @@ Share your success:
 
 ### See All Commands
 **[Command Reference →](COMMAND_REFERENCE.md)**
-*Complete documentation of all 18 commands*
+*Complete documentation of all 24 commands*
 
 ### Get Inspired
 **[Real Examples →](EXAMPLES.md)**
